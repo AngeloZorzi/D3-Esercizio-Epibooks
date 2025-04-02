@@ -5,6 +5,7 @@ class SingleBook extends Component {
   state = {
     selected: false,
   };
+
   render() {
     const { book } = this.props;
 
