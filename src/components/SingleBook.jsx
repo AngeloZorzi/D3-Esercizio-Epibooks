@@ -10,8 +10,22 @@ class SingleBook extends Component {
     const { book } = this.props;
 
     return (
-      <Card className="book-cover d-flex flex-column">
-        <Card.Img variant="top" src={book.img} alt={book.title} />
+      <Card
+        className="book-cover d-flex flex-column"
+        style={{
+          border: this.state.selected ? "2px solid red" : "1px solid gray",
+        }}
+      >
+        <Card.Img
+          variant="top"
+          src={book.img}
+          alt={book.title}
+          onClick={() => {
+            this.setState({
+              selected: !this.state.selected,
+            });
+          }}
+        />
         <Card.Body>
           <Card.Title className="text-center">{book.title}</Card.Title>
         </Card.Body>
