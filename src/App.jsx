@@ -3,16 +3,29 @@ import "./App.css";
 import MyNav from "./components/MyNav";
 import MyFooter from "./components/MyFooter";
 import Welcome from "./components/Welcome";
-
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
+import history from "./data/history.json";
+import fantasy from "./data/fantasy.json";
+import horror from "./data/horror.json";
+import romance from "./data/romance.json";
+import scifi from "./data/scifi.json";
+import SingleBook from "./components/SingleBook";
+import BookList from "./components/BookList";
 
 function App() {
   return (
     <>
       <MyNav />
-      <Container>
-        <Welcome />
+      <Welcome />
+      <Container fluid>
+        <h5 className=" text-center fw-bold">Sezione Romance</h5>
+        <BookList books={romance} />
       </Container>
+      <Container fluid>
+        <h5 className=" text-center fw-bold">Sezione Horror</h5>
+        <BookList books={horror} />
+      </Container>
+
       <MyFooter />
     </>
   );

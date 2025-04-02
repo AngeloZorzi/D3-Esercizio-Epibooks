@@ -1,0 +1,19 @@
+.book-cover {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-cover img {
+  height: 250px;
+  object-fit: contain;
+  width: 100%;
+  background-color: rgba(224, 203, 176, 0.707);
+}
+
+.book-cover .card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
