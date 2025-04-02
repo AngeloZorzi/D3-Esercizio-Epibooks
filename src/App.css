@@ -9,6 +9,7 @@
   object-fit: contain;
   width: 100%;
   background-color: rgba(224, 203, 176, 0.707);
+  cursor: pointer;
 }
 
 .book-cover .card-body {
