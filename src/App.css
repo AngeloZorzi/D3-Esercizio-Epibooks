@@ -18,3 +18,14 @@
   flex-direction: column;
   justify-content: center;
 }
+body {
+  background: rgb(144, 36, 205);
+  background: linear-gradient(
+    173deg,
+    rgba(196, 108, 247, 0.822) 16%,
+    rgba(216, 117, 106, 1) 36%,
+    rgba(255, 255, 255, 1) 63%,
+    rgba(255, 204, 223, 1) 74%,
+    rgba(35, 123, 159, 0.9947951444533476) 96%
+  );
+}

@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 class SingleBook extends Component {
   state = {
@@ -28,6 +28,9 @@ class SingleBook extends Component {
         />
         <Card.Body>
           <Card.Title className="text-center">{book.title}</Card.Title>
+          <Button variant="dark" className=" mt-auto">
+            Acquista
+          </Button>
         </Card.Body>
       </Card>
     );
