@@ -11,6 +11,7 @@ import romance from "./data/romance.json";
 import scifi from "./data/scifi.json";
 import SingleBook from "./components/SingleBook";
 import BookList from "./components/BookList";
+import FormControl from "./components/FormControll";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <MyNav />
       <Welcome />
       <Container fluid>
+        <FormControl />
         <h5 className=" text-center fw-bold">Sezione Romance</h5>
         <BookList books={romance} />
       </Container>
