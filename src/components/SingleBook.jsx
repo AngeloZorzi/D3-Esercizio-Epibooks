@@ -6,6 +6,9 @@ class SingleBook extends Component {
   state = {
     selected: false,
   };
+  toggleSelection = () => {
+    this.setState((prevState) => ({ selected: !prevState.selected }));
+  };
 
   render() {
     const { book } = this.props;
@@ -29,9 +32,8 @@ class SingleBook extends Component {
         />
         <Card.Body>
           <Card.Title className="text-center">{book.title}</Card.Title>
-          <Button variant="dark" className=" mt-auto">
-            <CommentArea />
-          </Button>
+
+          {this.state.selected && <CommentArea bookId={book.asin} />}
         </Card.Body>
       </Card>
     );

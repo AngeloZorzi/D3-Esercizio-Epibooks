@@ -1,18 +1,13 @@
 import { Component } from "react";
+import { Dropdown } from "react-bootstrap";
 
-const URL = "https://striveschool-api.herokuapp.com/api/comments/:_id";
+const URL = "https://striveschool-api.herokuapp.com/api/comments/";
 class CommentArea extends Component {
   state = {
-    comments: [
-      {
-        comment: "",
-        rate: "",
-        elementId: "",
-      },
-    ],
+    comments: [],
   };
   getComments = () => {
-    fetch(URL, {
+    fetch(`${URL}${this.props.bookId}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization:
@@ -29,9 +24,7 @@ class CommentArea extends Component {
       .then((data) => {
         console.log("DATA", data);
         this.setState({
-          comment: data.comment,
-          rate: data.rate,
-          elementId: data.elementId,
+          comments: data,
         });
       })
       .catch((err) => {
@@ -42,11 +35,30 @@ class CommentArea extends Component {
     console.log("MOUNT");
     this.getComments();
   };
+  componentDidUpdate(prevProps) {
+    if (prevProps.bookId !== this.props.bookId) {
+      this.getComments();
+    }
+  }
   render() {
     return (
-      <span>
-        <h6>Commenti</h6>
-      </span>
+      <div>
+        <Dropdown className=" text-center" drop="up">
+          <Dropdown.Toggle variant="warning" id="dropdown-basic">
+            Visualizza Commenti
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <ul>
+              {this.state.comments.map((comment) => (
+                <li key={comment._id}>
+                  {comment.comment} , Rating: {comment.rate}
+                </li>
+              ))}
+            </ul>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
     );
   }
 }
