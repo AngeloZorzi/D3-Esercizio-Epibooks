@@ -30,7 +30,7 @@ class BookList extends Component {
           </Col>
         </Row>
         <Row className="g-2">
-          {filteredBooks.slice(0, 3).map((book) => (
+          {filteredBooks.slice(0, 15).map((book) => (
             <Col xs={12} sm={6} md={4} lg={3} key={book.asin}>
               <SingleBook book={book} />
             </Col>
