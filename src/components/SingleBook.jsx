@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Card, Button } from "react-bootstrap";
+import CommentArea from "./CommentArea";
 
 class SingleBook extends Component {
   state = {
@@ -29,7 +30,7 @@ class SingleBook extends Component {
         <Card.Body>
           <Card.Title className="text-center">{book.title}</Card.Title>
           <Button variant="dark" className=" mt-auto">
-            Acquista
+            <CommentArea />
           </Button>
         </Card.Body>
       </Card>

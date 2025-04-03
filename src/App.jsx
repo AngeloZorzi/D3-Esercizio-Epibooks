@@ -11,6 +11,7 @@ import romance from "./data/romance.json";
 import scifi from "./data/scifi.json";
 import SingleBook from "./components/SingleBook";
 import BookList from "./components/BookList";
+import CommentArea from "./components/CommentArea";
 
 function App() {
   return (
