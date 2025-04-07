@@ -1,63 +1,94 @@
 import { Component } from "react";
-import { Dropdown } from "react-bootstrap";
+import { Spinner, Alert } from "react-bootstrap";
 
 const URL = "https://striveschool-api.herokuapp.com/api/comments/";
+
 class CommentArea extends Component {
   state = {
     comments: [],
+    isLoading: false,
+    isError: false,
   };
+
   getComments = () => {
+    this.setState({ isLoading: true, isError: false });
+
     fetch(`${URL}${this.props.bookId}`, {
       headers: {
-        "Content-Type": "application/json",
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RkMWYxZDM4MzRiZjAwMTUwMDA2ZmMiLCJpYXQiOjE3NDI1NDQ2NjksImV4cCI6MTc0Mzc1NDI2OX0.Fe1metoCEo3L7Ffjh8C7qiDWYg7k-4Xjt2Cgh2sRa40",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2YzZGI3NDVjZmRmODAwMTUwY2U1NGUiLCJpYXQiOjE3NDQwMzQ2NzYsImV4cCI6MTc0NTI0NDI3Nn0.fv-qESxOS53IKOFQMLhHb3zm1PQz_gi1kVi_zloxfOA",
       },
     })
       .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error("Errore nel sistema ");
+          throw new Error("Errore nel fetch dei commenti");
         }
       })
       .then((data) => {
-        console.log("DATA", data);
         this.setState({
           comments: data,
+          isLoading: false,
         });
       })
       .catch((err) => {
         console.log("ERRORE", err);
+        this.setState({
+          isError: true,
+          isLoading: false,
+        });
       });
   };
+
   componentDidMount = () => {
-    console.log("MOUNT");
-    this.getComments();
+    if (this.props.bookId) {
+      this.getComments();
+    }
   };
+
   componentDidUpdate(prevProps) {
     if (prevProps.bookId !== this.props.bookId) {
       this.getComments();
     }
   }
-  render() {
-    return (
-      <div>
-        <Dropdown className=" text-center">
-          <Dropdown.Toggle variant="warning" id="dropdown-basic">
-            Visualizza Commenti
-          </Dropdown.Toggle>
 
-          <Dropdown.Menu>
-            <ul>
-              {this.state.comments.map((comment) => (
-                <li key={comment._id}>
-                  {comment.comment} , Rating: {comment.rate}
-                </li>
-              ))}
-            </ul>
-          </Dropdown.Menu>
-        </Dropdown>
+  render() {
+    const { comments, isLoading, isError } = this.state;
+
+    if (!this.props.bookId) return null;
+
+    return (
+      <div className="p-3 border rounded bg-light">
+        <h5 className="text-center mb-3">Commenti</h5>
+
+        {isLoading && (
+          <div className="text-center">
+            <Spinner animation="border" variant="warning" />
+          </div>
+        )}
+
+        {isError && (
+          <Alert variant="danger" className="text-center">
+            Errore nel caricamento dei commenti
+          </Alert>
+        )}
+
+        {!isLoading && !isError && comments.length === 0 && (
+          <p className="text-center text-muted">Nessun commento disponibile.</p>
+        )}
+
+        <ul className="list-unstyled">
+          {comments.map((comment) => (
+            <li key={comment._id} className="mb-2">
+              <div className="p-2 border rounded bg-white">
+                <strong>Rating:</strong> {comment.rate}/5
+                <br />
+                <em>{comment.comment}</em>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }

@@ -19,11 +19,11 @@ function App() {
       <MyNav />
       <Welcome />
       <Container fluid>
-        <h5 className=" text-center fw-bold">Sezione Romance</h5>
+        <h5 className=" text-start my-2  fw-bold">Sezione Romance</h5>
         <BookList books={romance} category="romance" />
       </Container>
       <Container fluid>
-        <h5 className=" text-center fw-bold">Sezione Horror</h5>
+        <h5 className=" text-start my-2 fw-bold">Sezione Horror</h5>
         <BookList books={horror} category="horror" />
       </Container>
 

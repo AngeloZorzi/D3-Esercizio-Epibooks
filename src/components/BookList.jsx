@@ -14,7 +14,9 @@ class BookList extends Component {
   };
 
   handleBookSelect = (bookId) => {
-    this.setState({ selectedBookId: bookId });
+    this.setState((prevState) => ({
+      selectedBookId: prevState.selectedBookId === bookId ? null : bookId,
+    }));
   };
 
   render() {
