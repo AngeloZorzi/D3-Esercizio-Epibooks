@@ -43,7 +43,7 @@ class CommentArea extends Component {
   render() {
     return (
       <div>
-        <Dropdown className=" text-center" drop="up">
+        <Dropdown className=" text-center">
           <Dropdown.Toggle variant="warning" id="dropdown-basic">
             Visualizza Commenti
           </Dropdown.Toggle>
