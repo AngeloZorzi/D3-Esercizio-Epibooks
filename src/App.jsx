@@ -26,6 +26,18 @@ function App() {
         <h5 className=" text-start my-2 fw-bold">Sezione Horror</h5>
         <BookList books={horror} category="horror" />
       </Container>
+      <Container fluid>
+        <h5 className=" text-start my-2 fw-bold">Sezione Scifi</h5>
+        <BookList books={scifi} category="scifi" />
+      </Container>
+      <Container fluid>
+        <h5 className=" text-start my-2 fw-bold">Sezione History</h5>
+        <BookList books={history} category="history" />
+      </Container>
+      <Container fluid>
+        <h5 className=" text-start my-2 fw-bold">Sezione Fantasy</h5>
+        <BookList books={fantasy} category="fantasy" />
+      </Container>
 
       <MyFooter />
     </>
