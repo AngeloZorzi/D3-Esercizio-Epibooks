@@ -147,7 +147,7 @@ const CommentArea = function ({ bookId }) {
               <em>{comment.comment}</em>
               <Button
                 variant="danger"
-                className=" d-flex justify-content-end"
+                className=" d-flex justify-content-end mt-2"
                 size="sm"
                 onClick={() => deleteComment(comment._id)}
               >
