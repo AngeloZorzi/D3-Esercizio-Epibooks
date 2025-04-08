@@ -18,7 +18,7 @@ const SingleBook = function (props) {
         variant="top"
         src={book.img}
         alt={book.title}
-        onClick={handleClick()}
+        onClick={handleClick}
       />
       <Card.Body>
         <Card.Title className="text-center">{book.title}</Card.Title>

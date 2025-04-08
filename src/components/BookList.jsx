@@ -1,66 +1,63 @@
 import { Row, Col, FormControl } from "react-bootstrap";
 import SingleBook from "./SingleBook";
 import CommentArea from "./CommentArea";
-import { Component } from "react";
+import { useState } from "react";
 
-class BookList extends Component {
-  state = {
-    search: "",
-    selectedBookId: null,
+const BookList = function ({ books, category }) {
+  // state = {
+  //   search: "",
+  //   selectedBookId: null,
+  // };
+  const [search, setSearch] = useState("");
+  const [selectedBookId, setSelectedBookId] = useState(null);
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
   };
 
-  handleSearch = (e) => {
-    this.setState({ search: e.target.value });
-  };
-
-  handleBookSelect = (bookId) => {
-    this.setState((prevState) => ({
-      selectedBookId: prevState.selectedBookId === bookId ? null : bookId,
-    }));
-  };
-
-  render() {
-    const { books, category } = this.props;
-    const { search, selectedBookId } = this.state;
-
-    const categoryBooks = books.filter((book) => book.category === category);
-    const filteredBooks = categoryBooks.filter((book) =>
-      book.title.toLowerCase().includes(search.toLowerCase())
+  const handleBookSelect = (bookId) => {
+    setSelectedBookId((prevSelectedId) =>
+      prevSelectedId === bookId ? null : bookId
     );
+  };
 
-    return (
-      <>
-        <Row>
-          {/* Colonna di sinistra: griglia libri */}
-          <Col md={8}>
-            <Row className="g-2">
-              {filteredBooks.slice(0, 15).map((book) => (
-                <Col xs={12} sm={6} md={4} lg={3} key={book.asin}>
-                  <SingleBook
-                    book={book}
-                    isSelected={selectedBookId === book.asin}
-                    onSelect={this.handleBookSelect}
-                  />
-                </Col>
-              ))}
-            </Row>
-          </Col>
+  const categoryBooks = books.filter((book) => book.category === category);
+  const filteredBooks = categoryBooks.filter((book) =>
+    book.title.toLowerCase().includes(search.toLowerCase())
+  );
 
-          {/* Colonna di destra: CommentArea */}
-          <Col md={4}>
-            {selectedBookId ? (
-              <CommentArea bookId={selectedBookId} />
-            ) : (
-              <div className="text-muted">
-                Seleziona un libro per vedere i commenti
-              </div>
-            )}
-          </Col>
-        </Row>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Row>
+        {/* Colonna di sinistra: griglia libri */}
+        <Col md={8}>
+          <Row className="g-2">
+            {filteredBooks.slice(0, 3).map((book) => (
+              <Col xs={12} sm={6} md={4} lg={3} key={book.asin}>
+                <SingleBook
+                  book={book}
+                  isSelected={selectedBookId === book.asin}
+                  onSelect={() => handleBookSelect(book.asin)}
+                />
+              </Col>
+            ))}
+          </Row>
+        </Col>
+
+        {/* Colonna di destra: CommentArea */}
+        <Col md={4}>
+          {selectedBookId ? (
+            <CommentArea bookId={selectedBookId} />
+          ) : (
+            <div className="text-muted">
+              Seleziona un libro per vedere i commenti
+            </div>
+          )}
+        </Col>
+      </Row>
+    </>
+  );
+};
 
 export default BookList;
 
