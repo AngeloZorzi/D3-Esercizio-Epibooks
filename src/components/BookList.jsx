@@ -28,6 +28,17 @@ const BookList = function ({ books, category }) {
 
   return (
     <>
+      <Row className="justify-content-start">
+        <Col xs={12} md={6}>
+          <FormControl
+            className="mb-3 bg-warning-subtle border border-1 border-dark rounded rounded-1"
+            type="text"
+            placeholder={`Cerca nella sezione ${category}...`}
+            value={search}
+            onChange={handleSearch}
+          />
+        </Col>
+      </Row>
       <Row>
         {/* Colonna di sinistra: griglia libri */}
         <Col md={8}>
@@ -61,14 +72,5 @@ const BookList = function ({ books, category }) {
 
 export default BookList;
 
-//Barra di ricerca  <Row className="justify-content-center">
-//    <Col xs={12} md={6}>
-//    <FormControl
-//      className="mb-3 bg-warning-subtle border border-1 border-dark rounded rounded-1"
-//      type="text"
-//      placeholder={`Cerca nella sezione ${category}...`}
-//      value={search}
-//      onChange={this.handleSearch}
-//    />
-//  </Col>
-//  </Row
+//Barra di ricerca
+//
