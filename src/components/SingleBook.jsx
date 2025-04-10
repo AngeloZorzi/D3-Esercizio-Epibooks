@@ -9,6 +9,7 @@ const SingleBook = function (props) {
 
   return (
     <Card
+      data-testid="book-card"
       className="book-cover d-flex flex-column"
       style={{
         border: isSelected ? "2px solid red" : "1px solid gray",
