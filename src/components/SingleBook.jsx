@@ -20,6 +20,7 @@ const SingleBook = function (props) {
         src={book.img}
         alt={book.title}
         onClick={handleClick}
+        data-testid="book-card1"
       />
       <Card.Body>
         <Card.Title className="text-center">{book.title}</Card.Title>
